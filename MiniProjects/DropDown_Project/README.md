@@ -19,6 +19,6 @@ It allows users to search and filter countries from a dropdown list dynamically 
 ## 🛠️ Technologies Used
 
 - **HTML5** – for structure
-- **JavaScript (Vanilla JS)** – for filtering logic
+- **JavaScript** – for filtering logic
 
 ---
