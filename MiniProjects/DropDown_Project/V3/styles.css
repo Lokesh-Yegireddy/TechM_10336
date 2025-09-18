@@ -1,0 +1,32 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+#filterText {
+  padding: 5px;
+  font-size: 14px;
+}
+
+button {
+  padding: 5px 10px;
+  font-size: 14px;
+  margin-left: 5px;
+  background-color: rgb(25, 130, 221);
+  color:white;
+  width:auto;
+  border-radius: 20px;
+}
+
+#selectElement {
+ 
+  padding: 5px;
+  font-size: 14px;
+  min-width: 200px;
+}
+
+#message {
+    margin-left: 155px;
+    color: red;
+    font-size: 14px;
+}
