@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drop Down Project-2</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 30px;
+        background-color: #f9f9f9;
+      }
+
+      h1 {
+        color: #333;
+      }
+
+      #input-value {
+        width: 300px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 20px 20px 0 0; /* round only top corners */
+        outline: none;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Suggestions box */
+      .Suggestions {
+        position: absolute;
+        width: 300px; /* match input */
+        border: 1px solid #ccc;
+        border-top: none; /* merge with input */
+        border-radius: 0 0 20px 20px;
+        background: #fff;
+        list-style: none;
+
+        /* ✅ reset default ul spacing */
+        margin: 0;
+        padding: 0;
+
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-height: 200px;
+        overflow-y: auto;
+        z-index: 1000;
+      }
+
+      .Suggestions li {
+        padding: 10px 15px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .Suggestions li:hover {
+        background-color: #f0f0f0;
+      }
+
+      strong {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Search With Country Names...</h1>
+
+    <input
+      type="text"
+      id="input-value"
+      placeholder="Enter Country Name"
+    /><br />
+    <ul class="Suggestions"></ul>
+
+    <script>
+      const countries = [
+        "Afghanistan",
+        "Albania",
+        "Algeria",
+        "Andorra",
+        "Angola",
+        "Argentina",
+        "Australia",
+        "Austria",
+        "Bangladesh",
+        "Belgium",
+        "Brazil",
+        "Canada",
+        "China",
+        "Denmark",
+        "Egypt",
+        "Finland",
+        "France",
+        "Germany",
+        "Greece",
+        "India",
+        "Indonesia",
+        "Iran",
+        "Iraq",
+        "Ireland",
+        "Israel",
+        "Italy",
+        "Japan",
+        "Kenya",
+        "Malaysia",
+        "Mexico",
+        "Nepal",
+        "Netherlands",
+        "New Zealand",
+        "Nigeria",
+        "Norway",
+        "Pakistan",
+        "Philippines",
+        "Poland",
+        "Portugal",
+        "Qatar",
+        "Russia",
+        "Saudi Arabia",
+        "Singapore",
+        "South Africa",
+        "Spain",
+        "Sri Lanka",
+        "Sweden",
+        "Switzerland",
+        "Thailand",
+        "Turkey",
+        "Ukraine",
+        "United Arab Emirates",
+        "United Kingdom",
+        "United States",
+        "Vietnam",
+        "Zimbabwe",
+      ];
+
+      const inputBox = document.getElementById("input-value");
+      const suggestionsDiv = document.querySelector(".Suggestions");
+
+      function filter() {
+        let text = inputBox.value.toLowerCase();
+        suggestionsDiv.innerHTML = "";
+
+        if (text.length === 0) {
+          return;
+        }
+
+        for (let i = 0; i < countries.length; i++) {
+          if (countries[i].toLocaleLowerCase().startsWith(text)) {
+            let li = document.createElement("li");
+            li.innerHTML =
+              "<strong>" +
+              countries[i].slice(0, text.length) +
+              "</strong>" +
+              countries[i].slice(text.length);
+
+            li.addEventListener("click", () => {
+              inputBox.value = countries[i];
+              suggestionsDiv.innerHTML = "";
+            });
+
+            suggestionsDiv.appendChild(li);
+          }
+        }
+
+        if (suggestionsDiv.innerHTML === "") {
+          let li = document.createElement("li");
+          li.textContent = "No Country Found!";
+          li.style.color = "red";
+          suggestionsDiv.appendChild(li);
+        }
+      }
+
+      inputBox.addEventListener("input", filter);
+
+      // inputBox.addEventListener("input", function () {
+      //   let text = inputBox.value.toLowerCase();
+      //   suggestionsDiv.innerHTML = "";
+
+      //   if (text.length === 0) return;
+
+      //   for (let country of countries) {
+      //     if (country.toLowerCase().startsWith(text)) {
+      //       let li = document.createElement("li");
+      //       // Make matching part bold
+      //       li.innerHTML = `<strong>${country.slice(
+      //         0,
+      //         text.length
+      //       )}</strong>${country.slice(text.length)}`;
+
+      //       li.addEventListener("click", () => {
+      //         inputBox.value = country;
+      //         suggestionsDiv.innerHTML = "";
+      //       });
+
+      //       suggestionsDiv.appendChild(li);
+      //     }
+      //   }
+      // });
+
+      // // Hide suggestions when clicking anywhere outside input
+      // document.addEventListener("click", function (e) {
+      //   if (e.target !== inputBox) {
+      //     suggestionsDiv.innerHTML = "";
+      //   }
+      // });
+
+      // // Prevent suggestions from hiding when clicking on input
+      // inputBox.addEventListener("click", function (e) {
+      //   e.stopPropagation();
+      // });
+    </script>
+  </body>
+</html>
