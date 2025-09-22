@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This is a simple **To-Do App** built using **HTML, CSS, and JavaScript**. The app allows users to manage their tasks by adding, editing, and viewing task details in a tabular format. This project is implemented as a **Phase 1 prototype**, and it is intended to practice DOM manipulation, form handling, and basic client-side JavaScript functionality.
+This is a simple **To-Do App** built using **HTML, CSS, and JavaScript**. The app allows users to manage their tasks by adding, editing, updating status, and viewing task details in a tabular format. This project is implemented as a **Phase 1 prototype**, and it is intended to practice DOM manipulation, form handling, and basic client-side JavaScript functionality.
 
 **Project Path:**  
 `C:\Users\yegir\OneDrive\Attachments\Pictures\Desktop\Lokesh_10336\MiniProjects\To-Do App`
@@ -11,7 +11,7 @@ This is a simple **To-Do App** built using **HTML, CSS, and JavaScript**. The ap
 
 - `index.html` – Main HTML structure of the app.
 - `styles.css` – CSS styling for the app, including responsive layout, table styling, and form design.
-- `app.js` – JavaScript logic for adding, editing, and rendering tasks.
+- `app.js` – JavaScript logic for adding, editing, updating status, and rendering tasks.
 - `README.md` – Project documentation (this file).
 
 ---
@@ -28,6 +28,7 @@ This is a simple **To-Do App** built using **HTML, CSS, and JavaScript**. The ap
    - `Add Task` button to add a new task.
    - `Reset` button to clear the form.
    - Form fields are dynamically populated when editing a task.
+   - When a task is updated with **Completed** status, the form resets and the `Update Task` button switches back to `Add Task`.
 
 2. **Task List**
 
@@ -49,6 +50,7 @@ This is a simple **To-Do App** built using **HTML, CSS, and JavaScript**. The ap
      - The Add Task button changes to **Update Task** while editing.
      - Updates are reflected immediately in the table.
    - Edited date is displayed alongside the original posted date.
+   - If task status is updated to **Completed**, the form resets and editing is disabled.
 
 4. **Task Data Management**
 
@@ -62,7 +64,15 @@ This is a simple **To-Do App** built using **HTML, CSS, and JavaScript**. The ap
      - `dueDate`
      - `status`
 
-5. **Responsive Design**
+5. **Update Status**
+
+   - Each task row includes a dropdown to update the status:
+     - Pending → In Progress → Completed
+   - A confirmation dialog is shown before changing status.
+   - Once updated, changes are reflected in real-time in the table.
+   - If status is set to **Completed**, the row’s dropdown and edit button are disabled.
+
+6. **Responsive Design**
    - Form and table are styled to be **mobile-friendly**.
    - CSS includes:
      - Underline style for inputs
@@ -79,17 +89,9 @@ This is a simple **To-Do App** built using **HTML, CSS, and JavaScript**. The ap
    - Ensure all fields are properly validated.
    - Display error messages below each field.
 
-2. **Update Status Button**
+## Optional Features (Future Enhancements)
 
-   - Implement functionality for changing task status from Pending → In Progress → Completed.
-   - Currently, the Update Status button is available in each table row.
-
-3. **Disable Actions for Completed Tasks**
-
-   - If a task status is set to **Completed**, the **action buttons** in the separate action block (or in the table row) must be **disabled**.
-   - Users should **not be able to edit or update** tasks that are already completed using the action buttons.
-
-4. **Radio Button Selection for Single Task Actions**
+1. **Radio Button Selection for Single Task Actions**
    - Add radio buttons to each task row to select a specific task.
    - When a task is selected, a separate action block appears below or beside the table.
    - The action block contains **Edit** and **Update Status** buttons for the selected task.
@@ -104,7 +106,8 @@ This is a simple **To-Do App** built using **HTML, CSS, and JavaScript**. The ap
 3. Use the form to add a new task.
 4. Edit tasks by clicking the **Edit** button.
 5. Reset the form by clicking the **Reset** button.
-6. Observe the task list update in real-time.
+6. Update task status using the dropdown in the task list.
+7. Observe the task list update in real-time.
 
 ---
 
@@ -118,7 +121,6 @@ This is a simple **To-Do App** built using **HTML, CSS, and JavaScript**. The ap
 - Tasks are stored **temporarily in memory**. Refreshing the page will reset all tasks.
 - Future phases may include:
   - Task validations
-  - Update Status button functionality
   - Persistent storage (localStorage or backend database)
   - Additional features like task filtering and sorting
 
@@ -126,8 +128,8 @@ This is a simple **To-Do App** built using **HTML, CSS, and JavaScript**. The ap
 
 To-Do App/
 │
-├── index.html # Main HTML page
-├── styles.css # CSS styles for form, table, buttons, etc.
-├── app.js # JavaScript logic for adding, editing, rendering tasks
-├── README.md # Project documentation
+├── index.html # Main HTML page  
+├── styles.css # CSS styles for form, table, buttons, etc.  
+├── app.js # JavaScript logic for adding, editing, updating status, rendering tasks  
+├── README.md # Project documentation  
 └── assets/ # Optional folder for images or icons

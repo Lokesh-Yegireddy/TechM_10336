@@ -31,6 +31,14 @@ function addTask() {
     task.status = status;
     task.editedDate = new Date().toISOString().split("T")[0];
 
+    if (status === "Completed") {
+  document.getElementById("todo-form").reset();
+  window.editingTaskId = null;
+  document.getElementById("add-button").textContent = "Add Task";
+}
+
+
+   
     alert("Task Updated Successfully!");
    
   } else {
@@ -45,6 +53,7 @@ function addTask() {
 
     };
     tasks.push(task);
+    
      alert("Task Added Successfully!");
   }
    
@@ -53,8 +62,6 @@ function addTask() {
  
 }
 
-
- 
  
  function renderTasks() {
   var tasksBody = document.getElementById("tasks-body");
@@ -78,14 +85,20 @@ function addTask() {
 
     // Actions
     var actionEdit = document.createElement("td");
-    actionEdit.innerHTML =
-      `<button id="edit-button-${task.id}" onclick="editTask(${task.id})">Edit</button>`;
+     var actionUpdateStatus = document.createElement("td");
+    if(task.status === "Completed"){
+      actionEdit.innerHTML = `<button id="edit-button-${task.id}" disabled style="background-color: lightgray;color: white" >Edit</button>`;
+      actionUpdateStatus.innerHTML = `<select disabled style="background-color: lightgray;color: white">
+      <option value="Completed" selected>Completed</option>
 
-    var actionUpdateStatus = document.createElement("td");
-    actionUpdateStatus.innerHTML =
-      `<button id="update-status-button-${task.id}" onclick="UpdateTaskStatus(${task.id})">Update Status</button>`;
-
-    var actionCell = document.createElement("td");
+    </select>`;
+    }
+    else{
+      actionEdit.innerHTML =`<button id="edit-button-${task.id}" onclick="editTask(${task.id})">Edit</button>`;
+      actionUpdateStatus.innerHTML = generateStatusDropdown(task);
+    }
+   
+      var actionCell = document.createElement("td");
     actionCell.innerHTML = `
       <div class="action-buttons">
         ${actionEdit.innerHTML}
@@ -97,18 +110,60 @@ function addTask() {
     tasksBody.appendChild(row);
   });
 
-  NoTasksMessage();
+   NoTasksMessage();
 }
   
   
+// Generate status dropdown
+ function generateStatusDropdown(task) {
+    let options = "";
+
+  if (task.status === "Pending") {
+    options = `
+      <option value="Pending" selected>Pending</option>
+      <option value="In Progress">In Progress</option>
+      <option value="Completed">Completed</option>
+    `;
+  } else if (task.status === "In Progress") {
+    options = `
+      <option value="In Progress" selected>In Progress</option>
+      <option value="Completed">Completed</option>
+    `;
+  } else if (task.status === "Completed") {
+    options = `
+      <option value="Completed" selected>Completed</option>
+    `;
+  }
+
+  return `<select onchange="UpdateTaskStatus(${task.id},event)">${options}</select>`;
+}
+   
 
 // Function to update task status
-function UpdateTaskStatus(id) {
-  let currentStatus = tasks.find(task => task.id === id).status;
- 
+// Function to update task status
+function UpdateTaskStatus(id, event) {
+  let task = tasks.find(task => task.id === id);
+  let currentStatus = task.status;
 
+  // Get the newly selected value from the dropdown
+  let dropdown = event.target;
+  let newStatus = dropdown.value;
 
+  // Ask for confirmation
+  let confirmChange = confirm(`Are you sure you want to change status from "${currentStatus}" to "${newStatus}"?`);
+
+  if (confirmChange) {
+    // Update task status
+    task.status = newStatus;
+    task.editedDate = new Date().toISOString().split("T")[0];
+    alert("Status updated successfully!");
+    renderTasks();
+  } else {
+    // Revert dropdown selection back to old status
+    dropdown.value = currentStatus;
+  }
 }
+
 
 //Function to edit task
 function editTask(id) {
@@ -127,7 +182,7 @@ function editTask(id) {
   }else if(task.status === "In Progress"){
     document.getElementById("status").innerHTML = `
     <option value="In Progress" selected >In Progress</option>
-    <option value="Pending" >Completed</option>
+    <option value="Completed" >Completed</option>
   `;}
   document.getElementById("status").value = task.status;
   // Change Add button to Update button
