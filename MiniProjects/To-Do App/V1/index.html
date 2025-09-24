@@ -12,16 +12,18 @@
     <div class="form-container">
       <form id="todo-form">
         <label for="title">Enter Task Title:</label>
-        <div id="title-error" class="error-message"></div>
         <input type="text" id="title" />
+        <div id="title-error" class="error-message"></div>
         <label for="description">Enter Task Description:</label>
         <textarea
           id="description"
           rows="4"
           placeholder="Enter task description..."
         ></textarea>
+        <div id="description-error" class="error-message"></div>
         <label for="due-date">Select Due Date:</label>
         <input type="date" id="due-date" />
+        <div id="due-date-error" class="error-message"></div>
         <label for="status">Status:</label>
         <select id="status">
           <option value="Pending" selected>Pending</option>

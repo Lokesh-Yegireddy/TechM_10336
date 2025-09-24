@@ -21,9 +21,9 @@ This is a simple **To-Do App** built using **HTML, CSS, and JavaScript**. The ap
 1. **Task Form**
 
    - Form fields for:
-     - Task Title
-     - Task Description
-     - Due Date
+     - Task Title (required, allows only letters, numbers, spaces, and underscores, 3–10 characters)
+     - Task Description (optional, 10–30 characters if entered)
+     - Due Date (required, cannot be in the past)
      - Status (Pending, In Progress, Completed)
    - `Add Task` button to add a new task.
    - `Reset` button to clear the form.
@@ -72,24 +72,20 @@ This is a simple **To-Do App** built using **HTML, CSS, and JavaScript**. The ap
    - Once updated, changes are reflected in real-time in the table.
    - If status is set to **Completed**, the row’s dropdown and edit button are disabled.
 
-6. **Responsive Design**
-   - Form and table are styled to be **mobile-friendly**.
-   - CSS includes:
-     - Underline style for inputs
-     - Button styles
-     - Table styling with fixed layout and ellipsis for long text
-     - Action buttons for each task
+6. **Form Validations (Updated)**
+
+   - Title: required, 3–10 characters, only letters, numbers, spaces, and underscores.
+   - Description: optional; if entered, must be 10–30 characters.
+   - Due Date: required, cannot be in the past.
+   - Error messages are displayed below each field dynamically.
 
 ---
 
-## Remaining Features for Phase 1 Completion
+## Remaining Features for Phase 1 Completion (None)
 
-1. **Form Validations**
+- Phase -1 Completed
 
-   - Ensure all fields are properly validated.
-   - Display error messages below each field.
-
-## Optional Features (Future Enhancements)
+## (Future Enhancements)
 
 1. **Radio Button Selection for Single Task Actions**
    - Add radio buttons to each task row to select a specific task.
@@ -120,9 +116,9 @@ This is a simple **To-Do App** built using **HTML, CSS, and JavaScript**. The ap
 - This project is entirely **client-side**, using vanilla JavaScript. No backend or database is used.
 - Tasks are stored **temporarily in memory**. Refreshing the page will reset all tasks.
 - Future phases may include:
-  - Task validations
-  - Persistent storage (localStorage or backend database)
-  - Additional features like task filtering and sorting
+  - Persistent storage
+  - Task filtering and sorting
+  - Improved validation and optional features
 
 ## Project Folder Structure
 

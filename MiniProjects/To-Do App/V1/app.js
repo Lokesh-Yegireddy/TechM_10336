@@ -15,15 +15,13 @@ function NoTasksMessage() {
 }
 
 function addTask() {
-
-
-  var title = document.getElementById("title").value;
-  var description = document.getElementById("description").value;
+  var title = document.getElementById("title").value.trim();
+  var description = document.getElementById("description").value.trim();
   var dueDate = document.getElementById("due-date").value;
   var status = document.getElementById("status").value;
 
+  // If editing an existing task
   if (window.editingTaskId) {
-    // Update existing task
     let task = tasks.find(t => t.id === window.editingTaskId);
     task.title = title;
     task.description = description;
@@ -32,17 +30,21 @@ function addTask() {
     task.editedDate = new Date().toISOString().split("T")[0];
 
     if (status === "Completed") {
-  document.getElementById("todo-form").reset();
-  window.editingTaskId = null;
-  document.getElementById("add-button").textContent = "Add Task";
-}
+      document.getElementById("todo-form").reset();
+      window.editingTaskId = null;
+      document.getElementById("add-button").textContent = "Add Task";
+    }
 
-
-   
     alert("Task Updated Successfully!");
-   
   } else {
-    // Add new task
+    // ---- VALIDATION ----
+    let isValid = formValidation(title, description, dueDate);
+    if (!isValid) {
+      // Stop adding if validation failed
+      return;
+    }
+
+    // ---- ADD NEW TASK ----
     var task = {
       id: tasks.length + 1,
       title: title,
@@ -50,16 +52,72 @@ function addTask() {
       postedDate: new Date().toISOString().split("T")[0],
       dueDate: dueDate,
       status: status
-
     };
     tasks.push(task);
-    
-     alert("Task Added Successfully!");
+    alert("Task Added Successfully!");
   }
-   
- 
+
   renderTasks();
- 
+}
+
+     // Form  Validations 
+  function formValidation(title, description, dueDate) {
+
+  // Clear previous error messages
+  document.getElementById("title-error").style.display = "none";
+  document.getElementById("description-error").style.display = "none";
+  document.getElementById("due-date-error").style.display = "none"; 
+
+  let isValid = true; // Track if all checks passed
+
+  // ---- Title checks ----
+  if (title === "") {
+    showError("title-error", "*Title is required.*");
+    isValid = false;
+  } else if (title.length < 3 || title.length > 10) {
+    showError("title-error", "*Title must be between 3 and 10 characters.*");
+    isValid = false;
+    titleError.style.color = "red";
+    titleError.style.fontWeight = "bold";
+    titleError.style.fontSize = "small";
+    titleError.style.fontStyle = "italic";
+    titleError.style.marginTop = "5px";
+    isValid = false;
+  } else {
+    // Raw logic to allow only letters, numbers, underscore,
+    for (let i = 0; i < title.length; i++) {
+      let ch = title.charAt(i);
+      if (
+        !(
+          (ch >= "A" && ch <= "Z") || 
+          (ch >= "a" && ch <= "z") || 
+          (ch >= "0" && ch <= "9") ||  
+          ch === "_"
+        )
+      ) {
+        showError("title-error", "*Title can only contain letters, numbers and underscores.*");
+        isValid = false;
+        break;
+      }
+    }
+  }
+
+  // ---- Description checks ----
+ if (description !== "" && (description.length < 10 || description.length > 30)) {
+    showError("description-error", "*Description must be between 10 and 30 characters.*");
+    isValid = false;
+}
+
+  // ---- Due date checks ----
+  if (dueDate === "") {
+    showError("due-date-error", "*Due date is required.*");     
+    isValid = false;
+  } else if (dueDate < new Date().toISOString().split("T")[0]) {
+    showError("due-date-error", "*Due date cannot be in the past.*");
+    isValid = false;
+  }
+
+  return isValid; // return overall result
 }
 
  
@@ -192,6 +250,21 @@ function editTask(id) {
   window.editingTaskId = id; // Store the task ID globally for updatin
 
 }
+
+// Helper to show error
+function showError(elementId, message) {
+    const el = document.getElementById(elementId);
+    el.textContent = message;
+    el.style.display = "block";
+
+    // Common styles for all error messages
+    el.style.color = "red";
+    el.style.fontWeight = "bold";
+    el.style.fontSize = "small";
+    el.style.fontStyle = "italic";
+    el.style.marginTop = "5px";
+}
+
 
 
 // Clear form fields
