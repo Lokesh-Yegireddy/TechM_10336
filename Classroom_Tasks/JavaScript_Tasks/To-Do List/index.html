@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do App</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header><h1>My TO-DO App</h1></header>
+    <!--<img src="assets\ToDoBg.png" alt="To-Do Image" class="background-image" />-->
+    <div class="form-container">
+      <form id="todo-form">
+        <label for="title">Enter Task Title:</label>
+        <input type="text" id="title" />
+        <div id="title-error" class="error-message"></div>
+        <label for="description">Enter Task Description:</label>
+        <textarea
+          id="description"
+          rows="4"
+          placeholder="Enter task description..."
+        ></textarea>
+        <div id="description-error" class="error-message"></div>
+        <label for="due-date">Select Due Date:</label>
+        <input type="date" id="due-date" />
+        <div id="due-date-error" class="error-message"></div>
+        <label for="status">Status:</label>
+        <select id="status">
+          <option value="Pending" selected>Pending</option>
+          <option value="In Progress" disabled>In Progress</option>
+          <option value="Completed" disabled>Completed</option>
+        </select>
+        <div class="button-group">
+          <button onclick="addTask()" type="button" id="add-button">
+            Add Task
+          </button>
+          <button type="button" id="reset-button">Reset</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="tasks-container">
+      <h2>Task List</h2>
+
+      <table id="tasks-table" border="1">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Posted On</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="tasks-body">
+          <!-- Tasks will be dynamically added here -->
+        </tbody>
+      </table>
+      <div
+        id="no-tasks-message"
+        class="no-tasks-message"
+        style="
+          display: none;
+          color: red;
+          text-align: center;
+          margin: 30px;
+          padding: 30px;
+          font-weight: bold;
+          font-size: 24px;
+        "
+      >
+        No tasks available. Please add a task!
+      </div>
+    </div>
+
+    <!--Css Model for Update Status Button -->
+
+    <!--Javascript code -->
+    <script src="app.js"></script>
+  </body>
+</html>

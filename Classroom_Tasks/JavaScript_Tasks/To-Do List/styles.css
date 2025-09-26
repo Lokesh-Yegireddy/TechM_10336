@@ -1,0 +1,206 @@
+/* 1. Basic reset */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #075896;
+}
+
+label {
+  font-weight: bold;
+}
+
+/* 2. Header */
+header {
+  background: #1378b3;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+}
+
+.background-image {
+  display: block;
+  margin: 10px auto;
+  max-width: 90%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* 3. Form container (compact mobile-like) */
+.form-container {
+  width: 95%;
+  max-width: 450px;
+  margin: 15px auto;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  box-sizing: border-box;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.form-container .form-group {
+  flex: 1 1 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container label {
+  font-size: 13px;
+  margin-bottom: 3px;
+}
+
+/* --- Underline Input Style --- */
+input, textarea, select {
+  width: 100%;
+  padding: 6px 0;                  /* remove side padding */
+  border: none;
+  border-bottom: 1px solid #333;   /* underline instead of box */
+  border-radius: 0;                /* remove rounded corners */
+  font-size: 14px;
+  background: transparent;         /* blend with background */
+  box-sizing: border-box;
+}
+
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-bottom: 2px solid #1378b3;  /* highlight underline */
+  outline: none;
+}
+
+/* Optional: remove resize for textarea */
+textarea {
+  border: 1px solid #ccc; /* keep border for textarea */
+  resize: vertical; /* allow vertical resize only */
+  min-height: 30px;
+}
+
+/* 4. Buttons */
+.form-container .button-group {
+  flex: 1 1 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+}
+
+button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+
+#add-button {
+  margin-top: 10px;
+  background: #1378b3;
+  color: white;
+}
+
+#reset-button {
+  margin-top: 10px;
+  background: #d9534f;
+  color: white;
+}
+
+#no-tasks-message td {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+}
+
+#tasks-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tasks-container h2 {
+  color: white;
+  text-align: center;
+}
+
+/* 5. Tasks container */
+.tasks-container {
+  width: 100%;
+  padding: 0 15px;
+  margin: 10px 0;
+  overflow-x: auto;
+  box-sizing: border-box;
+}
+
+/* 6. Table */
+#tasks-table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+#tasks-table th, #tasks-table td {
+  border: 1px solid #ddd;
+  padding: 6px 8px;
+  vertical-align: middle;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#tasks-table th {
+  background: #1378b3;
+  color: white;
+}
+
+td {
+  color: white;
+}
+
+/* 7. Action column */
+.action-buttons {
+  padding-left: 20px;
+  justify-content: space-between;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 150px;
+}
+
+.action-buttons button,
+.action-buttons select {
+  font-size: 13px;
+  padding: 5px 8px;
+  border-radius: 4px;
+  height: 32px;
+  box-sizing: border-box;
+}
+
+.action-buttons button {
+  border: none;
+  background-color: #1378b3;
+  color: white;
+}
+
+.action-buttons button:hover {
+  background-color: #0e5d8a;
+}
+
+.action-buttons select {
+  border: 1px solid #ccc;
+  background: white;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
