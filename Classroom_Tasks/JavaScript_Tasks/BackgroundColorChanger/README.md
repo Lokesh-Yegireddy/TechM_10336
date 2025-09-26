@@ -52,11 +52,13 @@ BackgroundColorChanger/
 
 ### Screenshot 1
 
-![Output 1](output1.png)
+### Screenshot 1
+
+![Output 1](Screenshots/output1.png)
 
 ### Screenshot 2
 
-![Output 2](output2.png)
+![Output 2](Screenshots/output2.png)
 
 ---
 
