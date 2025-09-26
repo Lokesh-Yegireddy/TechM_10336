@@ -1,0 +1,95 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1{
+    margin-top: 150px;
+    align-items: center;
+    text-align: center;
+    color: #0f2d73;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#counter-display{
+    position: absolute;
+    top: 35%;                  /* moved up from 50% */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 70px;
+    text-align: center;
+   
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background-color: #b8c9e3;
+}
+
+.button-container{
+    position: absolute;
+    top: 50%;                  /* moved up from 70% */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.button-container button{
+    position: relative;      
+    display: flex;
+    flex-direction: column;  
+    column-gap: none;     
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height:50px;            
+    border: none;
+    border-radius: 12px;
+    background-color: #4a90e2;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
+    padding: 10px;            
+}
+
+.button-container button:hover {
+    background-color: #357ABD;
+}
+
+/* New styles for the symbol span */
+.button-container button .symbol {
+    font-size: 20px;    
+    margin-top: 2px;    /* small gap between text and symbol */
+}
+
+/* Reset button container */
+.reset-button-container {
+    position: absolute;
+    top: 55%;               /* moved up from 80% */
+    left: 50%;              
+    transform: translateX(-50%);
+}
+
+#reset-button {
+    width: 80px;
+    height:40px;
+    border: none;
+    border-radius: 12px;
+    background-color: #e24a4a; 
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
+}
+
+#reset-button:hover {
+    background-color: #b81c1c; 
+}
