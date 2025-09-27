@@ -11,8 +11,10 @@ ImageSwitcher/
 ├── index.html          # Main HTML file
 ├── styles.css          # CSS styling
 ├── script.js           # JavaScript functionality
-├
+├── README.md
 └── Screenshots/        # Screenshots of the project
+       |-initial.png
+       |-changed.png
 ```
 
 ---
