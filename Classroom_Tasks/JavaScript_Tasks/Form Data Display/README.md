@@ -44,10 +44,9 @@ BasicFormSubmit/
 ## Screenshots
 
 1. **Initial Form**  
-   ![Initial Form](Screenshots/initial.png)
-
+   ![Initial Form](Screentshots/initial.png)
 2. **Form After Submission**  
-   ![Submitted Form](Screenshots/submitted.png)
+   ![Submitted Form](Screentshots/submitted.png)
 
 ---
 
