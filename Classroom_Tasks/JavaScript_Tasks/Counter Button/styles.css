@@ -1,0 +1,97 @@
+/* Button Styling */
+#counter-button {
+    background-color: #082858;
+    color: white;
+    border-radius: 24px;
+    width: 120px;
+    height: 50px;
+    font-size: 20px;
+    border: none;
+    padding: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+
+#counter-button:hover {
+    background-color: rgb(31, 55, 140);
+    transform: scale(1.1);
+}
+
+/* Root Div - centers everything vertically and horizontally */
+#root-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* full viewport height */
+    gap: 30px;      /* space between elements inside root */
+    background-color: #f5f5f5; /* light background for contrast */
+}
+
+/* Child Div - holds button and counter horizontally */
+#child-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px; /* space between button and counter display */
+    background-color: #ffffff; /* optional white box around elements */
+    padding: 20px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Counter Display Styling */
+#Click-value {
+    font-size: 24px;
+    font-weight: bold;
+    min-width: 50px;
+    text-align: center;
+    color: #082858;
+}
+
+#reset{
+      background-color: #e31739;
+    color: white;
+    border-radius: 24px;
+    width: 120px;
+    height: 50px;
+    font-size: 20px;
+    border: none;
+    padding: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+
+  
+}
+
+#reset:hover{
+    
+  background-color:rgb(168, 4, 4);
+    
+}
+#root-div > span {
+    font-size: 50px;
+    font-weight: 600;
+    color: #082858;
+    margin-right: 10px; /* space between span and h3 */
+}
+
+/* Styling for the h3 that shows the click count */
+#Click-value {
+    display: inline-block;
+    font-size: 34px;
+    font-weight: bold;
+    color: #4a90e2;
+    padding: 5px 10px;
+    border-radius: 8px;
+    background-color: #e0e7ff; /* subtle background */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Optional hover effect for h3 */
+#Click-value:hover {
+    background-color: #c0d4ff;
+    transform: scale(1.05);
+}
