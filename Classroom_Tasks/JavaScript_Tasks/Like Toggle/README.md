@@ -48,6 +48,8 @@ This is a simple **Like Toggle Button** web project where a heart icon toggles b
 
 ## Folder Structure
 
+```
+
 Like Toggle /
 │
 ├── index.html # Main HTML page
@@ -58,3 +60,5 @@ Like Toggle /
 ├── initial.png # Initial state (outline heart)
 ├── liked.png # Liked state (filled heart)
 └── unliked.png # Unliked state after toggle
+
+```
