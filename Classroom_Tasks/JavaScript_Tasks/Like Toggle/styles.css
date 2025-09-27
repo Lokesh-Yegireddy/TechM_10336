@@ -1,0 +1,36 @@
+#like-button {
+    background: none;      /* remove default button background */
+    border: none;          /* remove button border */
+    cursor: pointer;       /* pointer on hover */
+    padding: 0;            /* remove default padding */
+    outline: none;         /* remove focus outline */
+}
+
+#like-button .material-icons {
+    font-size: 60px;       /* increase size of the heart */
+    color: #e94e77;        /* default color */
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+#like-button:hover .material-icons {
+    transform: scale(1.2); /* optional hover pop effect */
+}
+
+div{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:50px;
+    margin-top:200px;
+    flex-direction:column
+}
+#toggle-value {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 8px;
+    color: #333; /* default text color */
+    background-color: #f0f0f0; /* default background */
+    transition: all 0.3s ease; /* smooth color/background change */
+}
