@@ -1,0 +1,72 @@
+
+#My-Text{
+   
+background-color: #ffffff;   /* card background */
+  padding: 20px;              /* inner spacing */
+  border-radius: 12px;        /* rounded corners */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* subtle shadow */
+  max-width: 500px;           /* optional: limit width */
+  margin: 20px auto;          /* center horizontally */
+  text-align: center;         /* center the text */
+  font-weight:bold;
+
+}
+
+#text-div{
+    display:flex;
+    justify-content:center;
+
+}
+
+#buttons-div{
+    position:fixed;
+    top:250px;
+    display:flex;
+    gap:20px;
+    justify-content:center;
+   
+  
+}
+
+.btn-style{
+    width:80px;
+   color:rgb(255, 255, 255);
+    border:none;
+    cursor:pointer;
+     background-color:rgb(15, 62, 128);
+    font-size:22px;
+  
+    border-radius:24px;
+    font-weight:bold;
+    font-family:Times;
+
+    &:hover{
+
+        background-color:rgb(11, 49, 102);
+        color:white;
+    }
+}
+
+#reset{
+    width:80px;
+    border:none;
+    cursor:pointer;
+    font-size:22px;
+    border-radius:24px;
+    font-weight:bold;
+    font-family:Times;
+    background-color:red;
+    color:white;
+    &:hover{
+           background-color:rgb(211, 8, 8);
+    }
+}
+
+#root-div{
+   display: flex;
+  flex-direction: column; /* vertical stack */
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 20px; /* space between text and buttons */
+}
