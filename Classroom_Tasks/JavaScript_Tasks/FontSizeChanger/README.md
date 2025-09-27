@@ -44,6 +44,7 @@ It demonstrates core concepts of **HTML**, **CSS (card design, button styling, s
 
 ---
 
+```
 ## 📂 Project Structure
 
 FontSizeChanger/
@@ -56,6 +57,8 @@ FontSizeChanger/
 │ ├── fontIncreased.png
 │ ├── fontDecreased.png
 │ └── reset.png
+
+```
 
 3. **Screenshots**
 
