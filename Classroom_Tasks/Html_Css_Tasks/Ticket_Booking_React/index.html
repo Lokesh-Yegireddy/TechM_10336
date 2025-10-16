@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BookMyMovie (Raw React)</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- React and ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <script>
+      const { createElement: el } = React;
+
+      // ===== Helper: Create Filter Group =====
+      function FilterGroup(title, options) {
+        return el(
+          "div",
+          { className: "filter-group" },
+          el("p", { className: "filter-title" }, title),
+          ...options.map((opt) =>
+            el("label", null, el("input", { type: "checkbox" }), " ", opt)
+          )
+        );
+      }
+
+      // ===== Movie Data =====
+      const movies = [
+        { img: "assets/movie1.jpg", title: "Avengers: Endgame" },
+        { img: "assets/movie2.jpg", title: "The Lion King" },
+        { img: "assets/movie3.jpg", title: "Spider-Man: No Way Home" },
+        { img: "assets/movie4.jpg", title: "Shang-Chi" },
+        { img: "assets/movie5.jpg", title: "Fantastic Beasts" },
+      ];
+
+      // ===== MovieCard Component =====
+      function MovieCard(movie) {
+        return el(
+          "div",
+          { className: "movie-card" },
+          el("img", { src: movie.img, alt: movie.title }),
+          el("p", { className: "movie-title" }, movie.title),
+          el(
+            "div",
+            { className: "movie-buttons" },
+            el("button", null, "See Details"),
+            el("button", null, "Book Now")
+          )
+        );
+      }
+
+      // ===== App Component =====
+      const App = el(
+        React.Fragment,
+        null,
+
+        // ===== HEADER =====
+        el(
+          "header",
+          { className: "navbar" },
+          el(
+            "div",
+            { className: "nav-div" },
+
+            // === LOGO SECTION ===
+            el(
+              "div",
+              { className: "logo" },
+              el("img", {
+                src: "assets/logo.png",
+                alt: "BookMyMovie Logo",
+                className: "logo-img",
+              }),
+              el("span", { className: "logo-text" }, "BookMyMovie"),
+              el(
+                "a",
+                { href: "#", className: "location-wrapper" },
+                el("img", {
+                  className: "location-icon",
+                  src: "assets/Location-icon.png",
+                  alt: "Select Location",
+                }),
+                el("span", { className: "current-location" }, "(Vizag)")
+              )
+            ),
+
+            // === SEARCH BAR ===
+            el(
+              "div",
+              { className: "search-bar" },
+              el("input", {
+                type: "text",
+                placeholder: "Search for movies, theatres...",
+              })
+            ),
+
+            // === NAV LINKS ===
+            el(
+              "div",
+              null,
+              el(
+                "nav",
+                null,
+                el(
+                  "ul",
+                  { className: "nav-links" },
+                  ...["Home", "Movies", "Theatres", "Bookings"].map((link) =>
+                    el("li", null, el("a", { href: "#" }, link))
+                  )
+                )
+              )
+            ),
+
+            // === AUTH LINKS ===
+            el(
+              "div",
+              { className: "auth-links" },
+              el("a", { href: "#" }, "Login"),
+              el("a", { href: "#" }, "SignUp")
+            )
+          )
+        ),
+
+        // ===== MOVIE HEADER =====
+        el(
+          "div",
+          { className: "movie-header" },
+          el("h2", { className: "section-title" }, "Now Showing"),
+          el("a", { href: "#", className: "coming-soon" }, "Coming Soon")
+        ),
+
+        // ===== FILTER ROW =====
+        el(
+          "div",
+          { className: "filter-row" },
+          // Filter Dropdown
+          el(
+            "div",
+            { className: "filter-dropdown" },
+            el(
+              "div",
+              { className: "filter-btn" },
+              "Filter ▼",
+              el(
+                "div",
+                { className: "filter-content" },
+                FilterGroup("Languages", [
+                  "English",
+                  "Hindi",
+                  "Telugu",
+                  "Tamil",
+                ]),
+                FilterGroup("Genres", [
+                  "Action",
+                  "Drama",
+                  "Comedy",
+                  "Thriller",
+                ]),
+                FilterGroup("Format", ["2D", "3D", "IMAX"])
+              )
+            )
+          ),
+          // Filtered options
+          el(
+            "div",
+            { className: "filtered-options" },
+            ...["English", "Action", "2D"].map((opt) =>
+              el("span", { className: "filter-chip" }, opt)
+            )
+          )
+        ),
+
+        // ===== MOVIES GRID =====
+        el(
+          "div",
+          { className: "movies-grid" },
+          ...movies.map((m) => MovieCard(m))
+        )
+      );
+
+      // ===== Render App =====
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(App);
+    </script>
+  </body>
+</html>
