@@ -1,0 +1,67 @@
+
+
+export const movies= [
+  {
+    imgUrl: "https://upload.wikimedia.org/wikipedia/en/0/0d/Avengers_Endgame_poster.jpg",
+    title: "Avengers: Endgame",
+    genre: "Action",
+    duration: "3h 1m",
+    language: "English",
+    cast: ["Robert Downey Jr.", "Chris Evans", "Scarlett Johansson"],
+    avgRating: 8.5,
+  },
+  {
+    imgUrl: "https://m.media-amazon.com/images/S/pv-target-images/2c6bf6218aa296881bfba2aa6838a21a8bf768d844ad4522fe9931cdcb7a9f33.jpg",
+    title: "The Lion King",
+    genre: "Animation",
+    duration: "1h 58m",
+    language: "English",
+    cast: ["Donald Glover", "Beyoncé", "James Earl Jones"],
+    avgRating: 8.0,
+  },
+  {
+    imgUrl: "https://s3.amazonaws.com/media.thecrimson.com/photos/2021/11/29/194232_1353163.jpeg",
+    title: "Spider-Man: No Way Home",
+    genre: "Action",
+    duration: "2h 28m",
+    language: "English",
+    cast: ["Tom Holland", "Zendaya", "Benedict Cumberbatch"],
+    avgRating: 8.7,
+  },
+  {
+    imgUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/7/74/Shang-Chi_and_the_Legend_of_the_Ten_Rings_poster.jpeg/250px-Shang-Chi_and_the_Legend_of_the_Ten_Rings_poster.jpeg",
+    title: "Shang-Chi",
+    genre: "Action",
+    duration: "2h 12m",
+    language: "English",
+    cast: ["Simu Liu", "Awkwafina", "Tony Leung"],
+    avgRating: 7.9,
+  },
+  {
+    imgUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/0/0b/FBAWTFT-poster.jpg/250px-FBAWTFT-poster.jpg",
+    title: "Fantastic Beasts",
+    genre: "Fantasy",
+    duration: "2h 22m",
+    language: "English",
+    cast: ["Eddie Redmayne", "Katherine Waterston", "Dan Fogler"],
+    avgRating: 7.5,
+  },
+   {
+    imgUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/0/0b/FBAWTFT-poster.jpg/250px-FBAWTFT-poster.jpg",
+    title: "Fantastic Beasts",
+    genre: "Fantasy",
+    duration: "2h 22m",
+    language: "English",
+    cast: ["Eddie Redmayne", "Katherine Waterston", "Dan Fogler"],
+    avgRating: 7.5,
+  }, {
+    imgUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/0/0b/FBAWTFT-poster.jpg/250px-FBAWTFT-poster.jpg",
+    title: "Fantastic Beasts",
+    genre: "Fantasy",
+    duration: "2h 22m",
+    language: "English",
+    cast: ["Eddie Redmayne", "Katherine Waterston", "Dan Fogler"],
+    avgRating: 7.5,
+  },
+ 
+];
