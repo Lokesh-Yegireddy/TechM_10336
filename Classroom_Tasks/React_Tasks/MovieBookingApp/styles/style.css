@@ -103,6 +103,37 @@ html, body {
   display: flex;
   align-items: center;
 }
+
+/* ===== SEARCH BUTTON ===== */
+.search-bar button {
+  padding: 7px 15px;
+  margin-left: 8px;
+  border: 1px solid #e91748;
+  border-radius: 5px;
+  background-color: #e91748; /* pink button */
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.search-bar button:hover {
+  background-color: transparent;
+  color: #e91748;
+  border-color: #e91748;
+  transform: scale(1.05);
+}
+.search-bar input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.search-bar button {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+
 .search-bar input {
   padding: 7px 12px 7px 35px;
   border-radius: 5px;

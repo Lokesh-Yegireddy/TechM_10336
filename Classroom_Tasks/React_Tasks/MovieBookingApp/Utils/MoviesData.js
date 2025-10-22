@@ -63,5 +63,24 @@ export const movies= [
     cast: ["Eddie Redmayne", "Katherine Waterston", "Dan Fogler"],
     avgRating: 7.5,
   },
+  {
+    imgUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/0/0b/FBAWTFT-poster.jpg/250px-FBAWTFT-poster.jpg",
+    title: "Fantastic Beasts",
+    genre: "Fantasy",
+    duration: "2h 22m",
+    language: "English",
+    cast: ["Eddie Redmayne", "Katherine Waterston", "Dan Fogler"],
+    avgRating: 7.5,
+  },
+ 
+   {
+    imgUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/0/0b/FBAWTFT-poster.jpg/250px-FBAWTFT-poster.jpg",
+    title: "Fantastic Beasts",
+    genre: "Fantasy",
+    duration: "2h 22m",
+    language: "English",
+    cast: ["Eddie Redmayne", "Katherine Waterston", "Dan Fogler"],
+    avgRating: 7.5,
+  },
  
 ];

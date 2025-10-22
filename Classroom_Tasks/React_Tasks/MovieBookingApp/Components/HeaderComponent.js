@@ -19,10 +19,12 @@ return ( <>
         </div>
 
        
-        <div className="search-bar">
+      {/*  <div className="search-bar">
           <input type="text" placeholder="Search for movies, theatres..." />
+          <button className="search-btn">Search</button>
         </div>
-
+        
+        */ }
         <div>
           <nav>
             <ul className="nav-links">

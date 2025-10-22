@@ -14,9 +14,9 @@ const App = () => (
     <div className="scrollable-content">
       <HeaderComponent />
       <BodyComponent />
-      <MovieGridComponent />
+     <FooterComponent />
     </div>
-    <FooterComponent />
+   
   </>
 );
 

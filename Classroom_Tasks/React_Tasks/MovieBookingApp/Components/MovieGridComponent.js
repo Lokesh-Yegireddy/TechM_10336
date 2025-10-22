@@ -1,7 +1,7 @@
 import { movies } from "../Utils/MoviesData";
 
 
-const MovieGridComponent  = () => {
+const MovieGridComponent  = ({movies}) => {
   return (
     <div className="movies-grid">
       {movies.map((movie, index) => (
