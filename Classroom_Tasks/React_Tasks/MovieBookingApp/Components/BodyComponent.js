@@ -14,11 +14,29 @@ const BodyComponent = () => {
  //https://data.justickets.co/datapax/comingsoon.v2.json
 
 
-  const searchTxt="";
+  //const searchTxt="";
   const [searchText,setSearchText]=useState("");
-  const [ListOfMovies,setListOfMovies] = useState(movies);
+  // const [ListOfMovies,setListOfMovies] = useState(movies);
+   const [ListOfMovies,setListOfMovies] = useState([]);
   const [filteredMovieList,setFilteredMovieList] = useState([]);
-   
+   const [dataFetched, setDataFetched] = useState(false);
+
+if (!dataFetched) {
+  const fetchData = async () => {
+    const response = await fetch(
+     " https://data.justickets.co/datapax/JUSTICKETS.visakhapatnam.v1.json"
+     // "https://api.themoviedb.org/3/movie/popular?api_key=c45a857c193f6302f2b5061c3b85e743&language=en-US&page=1"
+    );
+    const jsonData = await response.json();
+    setListOfMovies(jsonData.movies);
+    console.log(jsonData.movies);
+    setFilteredMovieList(jsonData.movies);
+  };
+  fetchData();
+  setDataFetched(true);
+}
+
+
   // Function to render selected filters dynamically
   const renderSelectedFilters = () => {
     const selected = [];
@@ -48,12 +66,33 @@ const BodyComponent = () => {
   return (
     <>
        
-    
+    <div className="movie-header">
+  <button 
+    className="section-title"
+    onClick={() => {
+      // Handle "Now Showing" click, e.g., filter movies
+      console.log("Now Showing clicked");
+    }}
+  >
+    Now Showing
+  </button>
 
-      <div className="movie-header">
-        <h2 className="section-title">Now Showing</h2>
+  <button 
+    className="coming-soon"
+    onClick={() => {
+      // Handle "Coming Soon" click, e.g., filter upcoming movies
+      console.log("Coming Soon clicked");
+    }}
+  >
+    Coming Soon
+  </button>
+</div>
+
+
+      {/* <div className="movie-header">
+        <a href="#" className="section-title">Now Showing</a>
         <a href="#" className="coming-soon">Coming Soon</a>
-      </div>
+      </div> */}
 
       <div className="filter-row">
         <div className="filter-dropdown">
@@ -97,9 +136,9 @@ const BodyComponent = () => {
           <button className="search-btn" onClick={(e)=>{
            // console.log({movies});
            // setListOfMovies(movies);
-           // console.log(ListOfMovies);
+            console.log(ListOfMovies);
           const filterMovies = ListOfMovies.filter((movie)=>
-             movie.title.toLowerCase().includes(searchText.toLowerCase())
+             movie.name.toLowerCase().includes(searchText.toLowerCase())
         );
           
               setFilteredMovieList(filterMovies);
@@ -109,7 +148,7 @@ const BodyComponent = () => {
         </div>
 
       {/* MovieGridComponent*/}
-      <MovieGridComponent movies={filteredMovieList.length ? filteredMovieList : movies}/>
+      <MovieGridComponent movies={filteredMovieList.length ? filteredMovieList : ListOfMovies}/>
     </>
   );
 };

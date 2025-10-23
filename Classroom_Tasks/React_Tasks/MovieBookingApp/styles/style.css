@@ -102,6 +102,8 @@ html, body {
   margin-left: 20px;
   display: flex;
   align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 /* ===== SEARCH BUTTON ===== */
@@ -216,22 +218,27 @@ html, body {
   margin:15px;
 
  
-}
-.section-title {
+}.section-title {
   font-size: 24px;
   font-weight: 600;
   color: #e91748;
+  background: none;       /* Remove default button background */
+  border: none;           /* Remove default button border */
+  cursor: pointer;        /* Show pointer on hover */
 }
+
 .coming-soon {
   font-size: 16px;
   font-weight: 500;
   color: #fff;
-  text-decoration: none;
+  background-color: transparent;
   padding: 5px 10px;
   border: 1px solid #e91748;
   border-radius: 5px;
+  cursor: pointer;
   transition: all 0.3s ease;
 }
+
 .coming-soon:hover {
   background-color: #e91748;
   color: #fff;
