@@ -59,7 +59,7 @@ html, body {
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 24px;
+  font-size: 34px;
   font-weight: 600;
   letter-spacing: 1px;
   color: #e91748;
@@ -72,7 +72,7 @@ html, body {
 .location-wrapper {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 4px;
   text-decoration: none;
   color: #fff;
   cursor: pointer;
@@ -82,8 +82,8 @@ html, body {
   color: #e91748;
 }
 .location-icon {
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
   transition: transform 0.3s ease, filter 0.3s ease;
   filter: brightness(0) invert(1);
@@ -93,7 +93,7 @@ html, body {
   filter: drop-shadow(0 0 6px #e91748);
 }
 .current-location {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
 }
 
@@ -160,7 +160,8 @@ html, body {
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 25px;
+  gap: 50px;
+  font-size: 24px;
 }
 .nav-links a {
   text-decoration: none;
