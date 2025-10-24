@@ -1,0 +1,30 @@
+{
+  "name": "moviebookingapp",
+  "version": "1.0.0",
+  "description": "React App For Booking Movie Tickets",
+  "scripts": {
+    "test": "jest",
+    "start": "parcel index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lokesh-Yegireddy/TechM_10336.git"
+  },
+  "keywords": [
+    "react",
+    "shows",
+    "ticket-booking"
+  ],
+  "author": "Lokesh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lokesh-Yegireddy/TechM_10336/issues"
+  },
+  "homepage": "https://github.com/Lokesh-Yegireddy/TechM_10336#readme",
+  "dependencies": {
+    "browserslist": "^4.26.3",
+    "parcel": "^2.16.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  }
+}
