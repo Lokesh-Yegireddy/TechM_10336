@@ -219,16 +219,7 @@ html, body {
   margin:15px;
 
  
-}.section-title {
-  font-size: 24px;
-  font-weight: 600;
-  color: #e91748;
-  background: none;       /* Remove default button background */
-  border: none;           /* Remove default button border */
-  cursor: pointer;        /* Show pointer on hover */
-}
-
-.coming-soon {
+}.now-showing-btn {
   font-size: 16px;
   font-weight: 500;
   color: #fff;
@@ -240,11 +231,34 @@ html, body {
   transition: all 0.3s ease;
 }
 
-.coming-soon:hover {
+.coming-soon-btn {
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  background-color: transparent;
+  padding: 5px 10px;
+  border: 1px solid #e91748;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.coming-soon-btn:hover {
+  background-color: #e91748;
+  color: #fff;
+}
+.now-showing-btn:hover {
   background-color: #e91748;
   color: #fff;
 }
 
+
+.now-showing-btn.active,
+.coming-soon-btn.active {
+  background-color: #e91748 !important; /* force it */
+  color: #fff !important;
+  font-weight: 600;
+}
 
 /* ===== FILTER ROW ===== */
 .filter-row {
@@ -424,13 +438,16 @@ html, body {
   overflow: hidden;
 }
 
-/* Rating */
+/* Rating 
 .movie-rating {
   font-size: 12px;
   font-weight: 500;
   color: #e91748;
   margin: 2px 5px 5px 5px;
 }
+  */
+
+  
 
 /* Buttons */
 .movie-buttons {

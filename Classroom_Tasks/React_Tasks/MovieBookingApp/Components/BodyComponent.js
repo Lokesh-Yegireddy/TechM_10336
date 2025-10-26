@@ -1,154 +1,112 @@
 import { useState } from "react";
-import { languages,genres,formats } from "../Utils/FiltersData";
+import { languages, genres, formats } from "../Utils/FiltersData";
 import HeaderComponent from "./HeaderComponent";
 import MovieGridComponent from "./MovieGridComponent";
 import { movies } from "/Utils/MoviesData";
+import SearchBarComponent from "./SearchBarComponent";
 
 const BodyComponent = () => {
+  const [searchText, setSearchText] = useState("");
+  const [ListOfMovies, setListOfMovies] = useState([]);
+  const [filteredMovieList, setFilteredMovieList] = useState([]);
+  const [dataFetched, setDataFetched] = useState(false);
+  const [currentMovieType, setCurrentMovieType] = useState("nowShowing"); 
+  const [genreMap, setGenreMap] = useState({});
 
-  //https://www.justickets.in/visakhapatnam
-//https://data.justickets.co/datapax/JUSTICKETS.visakhapatnam.v1.json
-//https://s3-ap-southeast-1.amazonaws.com/slydes-assets/datapax/screens.JUSTKT.v1.json
- //https://data.justickets.co/datapax/visakhapatnam.featured_content.json
- //https://www.justickets.in/language.json
- //https://data.justickets.co/datapax/comingsoon.v2.json
 
 
-  //const searchTxt="";
-  const [searchText,setSearchText]=useState("");
-  // const [ListOfMovies,setListOfMovies] = useState(movies);
-   const [ListOfMovies,setListOfMovies] = useState([]);
-  const [filteredMovieList,setFilteredMovieList] = useState([]);
-   const [dataFetched, setDataFetched] = useState(false);
-
-if (!dataFetched) {
+  // ✅ moved fetchData outside if-block so both initial load & button can use it
   const fetchData = async () => {
     const response = await fetch(
-     " https://data.justickets.co/datapax/JUSTICKETS.visakhapatnam.v1.json"
-     // "https://api.themoviedb.org/3/movie/popular?api_key=c45a857c193f6302f2b5061c3b85e743&language=en-US&page=1"
+      "https://api.themoviedb.org/3/movie/popular?api_key=c45a857c193f6302f2b5061c3b85e743&language=en-US&page=1"
     );
     const jsonData = await response.json();
-    setListOfMovies(jsonData.movies);
-    console.log(jsonData.movies);
-    setFilteredMovieList(jsonData.movies);
-  };
-  fetchData();
-  setDataFetched(true);
-}
 
+    const movies = jsonData.results;
 
-  // Function to render selected filters dynamically
-  const renderSelectedFilters = () => {
-    const selected = [];
-    document.querySelectorAll(".filter-checkbox").forEach((cb) => {
-      if (cb.checked) selected.push(cb.value);
-    });
+    // ✅ Fetch cast details for each movie
+    for (let i = 0; i < movies.length; i++) {
+      const movie = movies[i];
+      const castResponse = await fetch(
+        `https://api.themoviedb.org/3/movie/${movie.id}/credits?api_key=c45a857c193f6302f2b5061c3b85e743&language=en-US`
+      );
+      const castData = await castResponse.json();
+     // console.log(castData);
+      movie.cast = castData.cast ? castData.cast.slice(0, 5) : [];
+    }
 
-    const container = document.getElementById("filteredOptions");
-    container.innerHTML = selected
-      .map((f) => `<span class="filter-chip">${f}</span>`)
-      .join("");
+    setListOfMovies(movies);
+    setFilteredMovieList(movies);
+    console.log("Now Showing Movies:", movies);
   };
 
-  // Attach click listeners directly in render using onClick
-  const createCheckbox = (value) => (
-    <label key={value}>
-      <input
-        type="checkbox"
-        value={value}
-        className="filter-checkbox"
-        onClick={renderSelectedFilters}
-      />{" "}
-      {value}
-    </label>
-  );
+  // ✅ Only call once initially
+  if (!dataFetched) {
+    fetchData();
+    setDataFetched(true);
+  }
+
+  const fetchUpcommingMovies = async () => {
+    const upcommingData = await fetch(
+      "https://api.themoviedb.org/3/movie/upcoming?api_key=c45a857c193f6302f2b5061c3b85e743&language=en-US&page=1"
+    );
+
+    const upcommingMoviesData = await upcommingData.json();
+ //   console.log("Upcoming Movies:", upcommingMoviesData.results);
+    setListOfMovies(upcommingMoviesData.results);
+    setFilteredMovieList(upcommingMoviesData.results);
+     setCurrentMovieType("upcoming"); // update the state
+  };
 
   return (
     <>
-       
-    <div className="movie-header">
-  <button 
-    className="section-title"
+      <div className="movie-header">
+  <button
+    className={`now-showing-btn ${currentMovieType === "nowShowing" ? "active" : ""}`}
     onClick={() => {
-      // Handle "Now Showing" click, e.g., filter movies
-      console.log("Now Showing clicked");
+      fetchData();
+      setCurrentMovieType("nowShowing");
     }}
   >
     Now Showing
   </button>
 
-  <button 
-    className="coming-soon"
-    onClick={() => {
-      // Handle "Coming Soon" click, e.g., filter upcoming movies
-      console.log("Coming Soon clicked");
-    }}
+  <button
+    className={`coming-soon-btn ${currentMovieType === "upcoming" ? "active" : ""}`}
+    onClick={fetchUpcommingMovies}
   >
-    Coming Soon
+    Upcoming Movies
   </button>
 </div>
 
+      <SearchBarComponent
+        searchText={searchText}
+        setSearchText={setSearchText}
+        onSearch={() => {
+          const filterMovies = ListOfMovies.filter((movie) =>
+            movie.title.toLowerCase().includes(searchText.toLowerCase())
+          );
+          setFilteredMovieList(filterMovies);
+        }}
+      />
 
-      {/* <div className="movie-header">
-        <a href="#" className="section-title">Now Showing</a>
-        <a href="#" className="coming-soon">Coming Soon</a>
-      </div> */}
-
-      <div className="filter-row">
-        <div className="filter-dropdown">
-          <div className="filter-btn">
-            Filter ▼
-            <div className="filter-content">
-              <div className="filter-group">
-                <p className="filter-title">Languages</p>
-                {languages.map(createCheckbox)}
-              </div>
-
-              <div className="filter-group">
-                <p className="filter-title">Genres</p>
-                {genres.map(createCheckbox)}
-              </div>
-
-              <div className="filter-group">
-                <p className="filter-title">Format</p>
-               {formats.map(createCheckbox)}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="filtered-options" id="filteredOptions"></div>
-      </div>
-
-        <div className="search-bar">
-          <input 
-          type="text" 
-          id="searchText-id" 
-          value={searchText} 
-          placeholder="Search for movies, theatres..."
-          onChange={(e)=>{
-            setSearchText(e.target.value);
-        //  var temp=document.getElementById("searchText-id").value;
-        // setSearchText(temp);
-         //  console.log(temp);
+      {filteredMovieList.length > 0 ? (
+        <MovieGridComponent movies={filteredMovieList} movieType={currentMovieType} />
+      ) : searchText.trim() ? (
+        <div
+          style={{
+            textAlign: "center",
+            color: "#e91748",
+            fontWeight: "600",
+            marginTop: "40px",
+            fontSize: "18px",
           }}
-          />
-          <button className="search-btn" onClick={(e)=>{
-           // console.log({movies});
-           // setListOfMovies(movies);
-            console.log(ListOfMovies);
-          const filterMovies = ListOfMovies.filter((movie)=>
-             movie.name.toLowerCase().includes(searchText.toLowerCase())
-        );
-          
-              setFilteredMovieList(filterMovies);
-             // console.log(filteredMovieList);
-          }}
-          >Search</button>
+        >
+          No movies found for "{searchText}"
         </div>
-
-      {/* MovieGridComponent*/}
-      <MovieGridComponent movies={filteredMovieList.length ? filteredMovieList : ListOfMovies}/>
+      ) : (
+        <MovieGridComponent movies={ListOfMovies}  movieType={currentMovieType}  />
+      )}
     </>
   );
 };
