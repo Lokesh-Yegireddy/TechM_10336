@@ -1,0 +1,130 @@
+What is Emmet?
+=> Emmet is a web development tool that helps developers write HTML/CSS much faster using short, CSS-selector-like abbreviations.
+=> Emmet is already built into VS Code and many other editors, so we don’t need to install anything separately to use it.
+=> In simple terms, you write a short snippet and press Tab or Enter, and it automatically expands into a complete code structure.
+
+Example:
+div.container>ul>li*3 → press Tab or Enter
+    <div class="container">
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+
+html:5 → press Tab or Enter
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+    </head>
+    <body>
+    </body>
+    </html>
+
+Advantages:
+- Faster Coding: Build complete structures in seconds.
+- Cleaner Syntax: Reduces human errors (like missing closing tags).
+- Built-in Support: Works in VS Code, Sublime Text, Atom, and others.
+
+Symbols:
+>   creates a child element        div>p              → <div><p></p></div>
++   creates a sibling element      div+p              → <div></div><p></p>
+*   creates repeating elements     li*2               → <li></li><li></li>
+.   creates a class                div.container      → <div class="container"></div>
+#   creates an ID                  p#main             → <p id="main"></p>
+[]  creates attributes             input[type=text]   → <input type="text">
+{}  adds text content              p{hello}           → <p>hello</p>
+^   goes up one level              div>p>span^h1      → <div><p><span></span></p><h1></h1></div>
+
+
+------------------------------------------------------------
+Library vs Framework
+------------------------------------------------------------
+
+Library:
+=> A library is a collection of pre-written code or functions that developers can call and use whenever required.
+=> The developer has full control of how and when to use it.
+   i.e., you control the flow of the application.
+Example: React.js
+
+Framework:
+=> A framework provides a complete structure or skeleton for your application.
+=> You build your code inside it, and the framework controls the flow of execution.
+=> A framework has specific rules that must be followed to execute your app.
+Examples: Spring, Flutter
+
+
+------------------------------------------------------------
+What is CDN? Why do we use it?
+------------------------------------------------------------
+
+=> CDN stands for Content Delivery Network.
+=> A CDN is a group of servers placed at different locations around the world.
+=> Its main job is to deliver website content (like images, CSS, JavaScript, or videos) quickly and efficiently to users based on their location.
+=> Instead of loading all files from a single server, the CDN stores cached copies of those files on multiple servers (called edge servers) worldwide.
+=> When a user visits your website, the files are served from the nearest server — reducing load time and improving performance.
+
+Why we use CDN:
+- Faster Performance
+- Reduced Server Load
+- High Availability
+- Easy Integration
+
+
+------------------------------------------------------------
+Why is React known as React?
+------------------------------------------------------------
+
+=> The name “React” comes from its main purpose — it was built to react to changes in data and update the user interface (UI) automatically and efficiently.
+=> React helps developers create fast and responsive web applications.
+=> When data changes, React doesn’t update the whole page.
+=> Instead, it uses a Virtual DOM (a lightweight copy of the real DOM) to find what changed and update only those parts.
+
+
+------------------------------------------------------------
+What is cross-origin in the script tag?
+------------------------------------------------------------
+
+=> When a web page loads a script from another domain (like a CDN), it is called a cross-origin request.
+=> The `crossorigin` attribute tells the browser how to handle that request safely.
+
+Example:
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+
+=> This allows the browser to fetch scripts securely from other sources and still show detailed error messages (useful for debugging).
+=> If a website or server doesn’t allow cross-origin requests, developers can use browser extensions like “Allow CORS” for testing.
+
+
+------------------------------------------------------------
+What is the difference between React and ReactDOM?
+------------------------------------------------------------
+
+React:
+=> React is the main library used to build user interfaces.
+=> It helps you create components, handle their data (state), and manage how the UI should look using the Virtual DOM.
+=> However, React itself doesn’t directly interact with the browser — it just defines how things should appear.
+
+ReactDOM:
+=> ReactDOM acts as a bridge between React and the browser’s real DOM.
+=> It takes the components you create with React and renders them into the actual webpage so users can see and interact with them.
+
+
+------------------------------------------------------------
+Difference between react.development.js and react.production.js (via CDN)
+------------------------------------------------------------
+
+react.development.js:
+=> Used during development and debugging.
+=> Contains warnings and detailed error messages to help catch mistakes (like missing keys or invalid props).
+=> Larger in size because of extra checks and logs.
+=> Should not be used in production since it slows performance and exposes internal details.
+
+react.production.js:
+=> Used for production deployment.
+=> Optimized, minified, and compressed for faster loading.
+=> Removes all debugging messages and unnecessary code.
+=> Smaller in size, more secure, and ensures better performance.

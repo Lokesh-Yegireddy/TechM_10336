@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello World - React</title>
+
+    <!-- React and ReactDOM via CDN -->
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <!-- Babel for JSX (optional later, but fine to add now) -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      // Create a single element
+      const heading = React.createElement("h1", {}, "Hello World from React!");
+
+      // Create nested React elements
+      const nested = React.createElement(
+        "div",
+        {},
+        React.createElement("h1", {}, "Hello from React!"),
+        React.createElement("p", {}, "This is nested inside a div.")
+      );
+
+      // Render it
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(nested);
+    </script>
+  </body>
+</html>
