@@ -1,0 +1,213 @@
+
+
+1.  What is NPM ?
+
+=>NPM stands for Node Package Manager, and it comes automatically installed when you set up Node.js.
+
+=>It is a command-line tool that helps developers easily install, update, and manage external     libraries, frameworks, or tools (called packages or modules) in their projects.
+
+=>Instead of writing everything from scratch, NPM allows developers to use ready-made packages from the NPM Registry, which contains millions of open-source modules.
+
+=>It maintains all package details inside a file called package.json.
+
+=>It includes a built-in security check command — npm audit — which scans your project dependencies for vulnerabilities and suggests fixes.
+
+
+
+2. What is 'Parcel/Webpack'? Why do we need it? 
+
+=>Parcel and Webpack are both module bundlers used in modern web development.
+
+=> They take all your project files — like JavaScript, CSS, images, and other assets — and combine or “bundle” them into optimized files that browsers can easily read and load.
+
+Parcel:
+=>Parcel is a zero-configuration module bundler used for web applications.
+=>It automatically detects dependencies and bundles files without manual setup.
+=>Supports features like Hot Module Replacement (HMR) and built-in Babel.
+=>Performs code optimization, including minification, code splitting, and image optimization.
+=>Can handle various assets like JavaScript, CSS, images, and fonts.
+=>Best suited for small to medium projects due to its simplicity and speed.
+
+Webpack:
+=>Webpack is a highly configurable and powerful bundler for complex web projects.
+=>It uses loaders and plugins to manage and process JavaScript, CSS, and other assets.
+=>Supports advanced optimizations like tree-shaking, code splitting, and asset compression.
+=>Ideal for large-scale projects that require more customization and fine control.
+
+Why Do We Need It (parcel/webpack)?
+We need Parcel and Webpack to bundle, optimize, and manage JavaScript and other assets efficiently, making web applications faster, organized, and browser-compatible.
+
+
+
+3.What is '.parcel-cache ?
+=>The .parcel-cache folder is automatically created by Parcel when the project is built or run.
+
+=>It stores cached versions of processed files like JavaScript, CSS, HTML, and images.
+
+=>This helps Parcel skip reprocessing unchanged files, making rebuilds much faster.
+
+=>It improves overall build performance and reduces compilation time.
+
+
+=>The folder can be safely deleted anytime; Parcel will recreate it automatically during the next build.
+
+=>The cache can be disabled using the --no-cache flag in the build command.
+
+=>It is not needed in production and should not be pushed to Git.
+
+
+
+
+ 4.What is npx' ?
+=>npx is a command line  tool that lets you run Node.js packages without installing them globally.
+
+=>It comes with npm (version 5.2+).
+
+=>Helps avoid version issues and saves space.
+
+
+
+5.What is difference between dependencies' vs devDependencies'  ?
+
+Dependencies:
+ 
+ =>These are the packages needed for your app to run in production.
+ =>They are installed automatically when deploying the project.
+ =>Example: react, express.
+
+
+devDependencies:
+
+
+=> These packages are used only during development or testing, not in production.
+=> They help in building or debugging your app.
+=> While installing, use the -D or --save-dev flag.
+=> Example: parcel, jest.
+
+
+
+6.What is Tree Shaking ?
+
+=>Tree Shaking is a technique used in JavaScript bundlers like Parcel or Webpack to remove unused code from the final bundle.
+
+
+=>It helps make the output file smaller and faster to load.
+
+
+=>It works best with ES6 module syntax (import and export) because the bundler can easily detect which parts of the code are actually used.
+
+
+=>It doesn’t work as well with CommonJS (require), since it’s harder to analyze dynamically.
+
+
+7.What is Hot Module Replacement? 
+
+=>Hot Module Replacement (HMR) is a powerful feature in bundlers like Parcel or Webpack.  
+=> It allows developers to update parts (modules) of an application while it’s running — without reloading the entire page.  
+=>This makes development faster because it keeps the app state (like entered data or scroll position) intact.  
+=>The bundler watches for any file change, and when detected, it recompiles only that updated module, not the whole app.  
+=> HMR helps in quick debugging and improves productivity in live development environments.
+
+
+8.List down your favourite 5 superpowers of Parcel and describe any 3 of them in your own words.
+
+a. Zero Configuration
+ => Parcel works out of the box — no setup or config files required.
+ => It automatically identifies and processes assets like JS, CSS, HTML, and images.
+ => This makes it easier and faster to start a project compared to other bundlers.
+b. Blazing Fast Performance
+ => Parcel is built for high performance and multi-core parallel processing.
+ => It uses a cache system (.parcel-cache) to skip reprocessing unchanged files.
+ => This drastically reduces build time after the first compilation.
+c. Automatic Transformers
+ => Parcel automatically transforms modern JavaScript or TypeScript code into browser-compatible versions.
+ => It handles JSX, Sass, images, and other file types without manual configuration.
+d. Built-in Development Server with HMR
+ => Parcel includes a local development server that automatically launches in the browser.
+ => With HMR, any saved change reflects instantly in the browser without a full reload.
+ => This real-time update process makes the development workflow smoother and faster.
+e. Code Splitting & Optimized Builds
+ => Parcel supports code splitting — loading only the code needed for each page or component.
+ => It also performs tree shaking and minification, producing small, optimized bundles for production. 
+
+
+
+9. What is '.gitignore ? What should we add and not add into it? 
+.gitignore
+=> The .gitignore file tells Git which files or folders to exclude from version control.
+ => This helps keep repositories clean and prevents unnecessary or sensitive files from being tracked.
+Files/Folders to Include in .gitignore:
+ => Environment and secret files (.env, API keys).
+ => node_modules folder (auto-generated dependencies).
+ => package-lock.json (locks dependency versions).
+ => Cache and system folders like .parcel-cache/ or .vscode/.
+Files Not to Ignore:
+ => package.json (contains project info and dependencies).
+ => All source code and component files.
+ => Documentation files like README.md and LICENSE.
+
+
+10.What is the difference between 'package.json' and package-lock.json' 
+package.json
+ => Defines the project metadata (name, version, scripts, etc.).
+ => Lists both dependencies and devDependencies.
+ => Includes scripts for building, testing, or starting the project.
+ => Uses semantic versioning (^ or ~) to manage compatible package versions.
+ => Shared across all environments to describe the app’s setup.
+package-lock.json
+ => Auto-generated by npm to lock exact dependency versions and sub-dependencies.
+ => Ensures all environments use the same package versions for stability.
+ => Prevents version mismatches or unwanted updates.
+ => Can be safely deleted — it regenerates when you run npm install since it’s based on package.json.
+
+
+11. Why should I not modify package-lock.Json'?
+=> The package-lock.json file is managed by npm — manual editing can break your dependency structure.
+Changing it by hand may cause:
+=> Version mismatches and corrupted dependency trees.
+=> Build or runtime errors in production.
+=> Inconsistent behavior across environments.
+=> It locks package versions and verifies integrity, providing security against malicious updates.
+=> Always let npm handle this file automatically.
+
+12.What is 'node_modules' ? Is it a good idea to push that on git?
+=> node_modules is a directory created by npm (Node Package Manager) when you install dependencies for your Node.js project.
+ => It contains:
+ => All the JavaScript packages (libraries, frameworks, tools) your project depends on.
+ => Sub-dependencies (packages required by your dependencies).
+ => Executable scripts and binaries for tools like Babel.
+  
+  Why it should not be pushed to Git:
+ => Huge Repository Size: node_modules can be extremely large (often hundreds of MB or even GB). This makes your repository slow to clone, pull, or push.
+ => Redundant and Unnecessary: The folder can be regenerated at any time by running npm install.
+ => Platform-Specific Files: Some packages include binaries or platform-specific files (e.g., for macOS, Windows, or Linux), which can cause conflicts or errors when used on a different platform.
+
+13.What is the 'dist' folder? 
+=> The dist (distribution) folder stores the final production build of your app.=> It includes:
+=> Minified JavaScript (e.g., bundle.js)
+=> Compiled CSS files (e.g., style.css)
+=> Optimized assets like images, fonts, and HTML
+=> Transpiled code (TypeScript → JS or modern JS → ES5)
+=> It represents the deploy-ready version of your project.
+=> Usually excluded from Git since it’s auto-generated during builds.
+
+14.What is browserlists 'Read about dif bundlers: vite, webpack, parcel.
+=> Browserslist is a configuration tool used in npm-based projects to specify which browsers and versions the code should support.
+
+ => It helps tools like Autoprefixer and Babel optimize the code for compatibility with specific browsers.
+
+ => You can define a Browserslist configuration in the project (e.g., in package.json or .browserslistrc).
+It helps to:
+ => Add CSS vendor prefixes automatically.
+ => Transpile modern JavaScript to older versions for better browser support.
+ => Optimize your code only for the browsers you care about.
+
+ 
+15. Read about: ^ - caret and - - tilda . Read about Script types in html (MDN Docs) 
+^ (Caret):
+ => The caret symbol allows updates to the minor and patch versions, but not the major version.
+ => Example: ^1.2.3 would allow versions like 1.2.4, 1.3.0, or 1.9.9, but it would not allow 2.0.0.
+ ~ (Tilde):
+ => The tilde symbol allows updates only to the patch version, keeping the specified major and minor versions fixed.
+ => Example: ~1.2.3 would allow versions like 1.2.4, 1.2.5, but it would not allow 1.3.0 or 2.0.0.
+
