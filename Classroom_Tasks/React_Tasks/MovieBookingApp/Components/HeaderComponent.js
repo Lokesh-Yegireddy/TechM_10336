@@ -4,7 +4,8 @@ import { navLinks,authLinks } from "../Utils/links";
 const HeaderComponent = ()=>{
     
 return ( <>
-     <div className="nav-div">
+   
+       <div className="nav-div">
         <div className="logo">
           <img src="https://png.pngtree.com/png-vector/20250513/ourmid/pngtree-movie-night-essentials-such-as-clapperboard-popcorn-and-tickets-png-image_16245533.png" alt="BookMyMovie Logo" className="logo-img" />
           <span className="logo-text">BookMyMovie</span>
@@ -17,6 +18,8 @@ return ( <>
             <span className="current-location">(Vizag)</span>
           </a>
         </div>
+    
+    
 
        
       {/*  <div className="search-bar">
@@ -43,6 +46,7 @@ return ( <>
          ))}
         </div>
       </div>
+   
         
     </>)   
 }

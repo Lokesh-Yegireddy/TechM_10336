@@ -1,5 +1,8 @@
+
+
 const SearchBarComponent = ({ searchText, setSearchText, onSearch }) => {
   return (
+   
     <div className="search-bar">
       <input
         type="text"
@@ -8,7 +11,11 @@ const SearchBarComponent = ({ searchText, setSearchText, onSearch }) => {
         onChange={(e) => setSearchText(e.target.value)}
       />
       <button className="search-btn" onClick={onSearch}>Search</button>
+      
+     
     </div>
+
+     
   );
 };
 

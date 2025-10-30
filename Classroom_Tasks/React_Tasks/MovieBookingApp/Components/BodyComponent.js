@@ -1,83 +1,72 @@
-import { useState } from "react";
-import { languages, genres, formats } from "../Utils/FiltersData";
+import { useState, useEffect } from "react";
 import HeaderComponent from "./HeaderComponent";
 import MovieGridComponent from "./MovieGridComponent";
-import { movies } from "/Utils/MoviesData";
 import SearchBarComponent from "./SearchBarComponent";
+import ShimmerCardComponent from "./ShimmerCardComponent";
+import FiltersComponent from "./FiltersComponent";
+import ShowMovieDetailsComponent from "./ShowMovieDetailsComponent";
+import { fetchNowShowingMovies, fetchUpcomingMovies } from "../Utils/fetchData";
 
 const BodyComponent = () => {
   const [searchText, setSearchText] = useState("");
   const [ListOfMovies, setListOfMovies] = useState([]);
   const [filteredMovieList, setFilteredMovieList] = useState([]);
-  const [dataFetched, setDataFetched] = useState(false);
-  const [currentMovieType, setCurrentMovieType] = useState("nowShowing"); 
-  const [genreMap, setGenreMap] = useState({});
+  const [currentMovieType, setCurrentMovieType] = useState("nowShowing");
+  const [loading, setLoading] = useState(true);
+  const [selectedMovie, setSelectedMovie] = useState(null); // 👈 main toggle
 
-
-
-  // ✅ moved fetchData outside if-block so both initial load & button can use it
-  const fetchData = async () => {
-    const response = await fetch(
-      "https://api.themoviedb.org/3/movie/popular?api_key=c45a857c193f6302f2b5061c3b85e743&language=en-US&page=1"
-    );
-    const jsonData = await response.json();
-
-    const movies = jsonData.results;
-
-    // ✅ Fetch cast details for each movie
-    for (let i = 0; i < movies.length; i++) {
-      const movie = movies[i];
-      const castResponse = await fetch(
-        `https://api.themoviedb.org/3/movie/${movie.id}/credits?api_key=c45a857c193f6302f2b5061c3b85e743&language=en-US`
-      );
-      const castData = await castResponse.json();
-     // console.log(castData);
-      movie.cast = castData.cast ? castData.cast.slice(0, 5) : [];
-    }
-
+  // Load Now Showing
+  const loadNowShowing = async () => {
+    setLoading(true);
+    const movies = await fetchNowShowingMovies();
     setListOfMovies(movies);
     setFilteredMovieList(movies);
-    console.log("Now Showing Movies:", movies);
+    setCurrentMovieType("nowShowing");
+    setLoading(false);
   };
 
-  // ✅ Only call once initially
-  if (!dataFetched) {
-    fetchData();
-    setDataFetched(true);
+  // Load Upcoming
+  const loadUpcoming = async () => {
+    setLoading(true);
+    const movies = await fetchUpcomingMovies();
+    setListOfMovies(movies);
+    setFilteredMovieList(movies);
+    setCurrentMovieType("upcoming");
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    loadNowShowing();
+  }, []);
+
+  // 🔹 If a movie is selected, show only the details page
+  if (selectedMovie) {
+    return (
+      <ShowMovieDetailsComponent
+        movie={selectedMovie}
+        onBack={() => setSelectedMovie(null)} // go back to full view
+      />
+    );
   }
 
-  const fetchUpcommingMovies = async () => {
-    const upcommingData = await fetch(
-      "https://api.themoviedb.org/3/movie/upcoming?api_key=c45a857c193f6302f2b5061c3b85e743&language=en-US&page=1"
-    );
-
-    const upcommingMoviesData = await upcommingData.json();
- //   console.log("Upcoming Movies:", upcommingMoviesData.results);
-    setListOfMovies(upcommingMoviesData.results);
-    setFilteredMovieList(upcommingMoviesData.results);
-     setCurrentMovieType("upcoming"); // update the state
-  };
-
+  // 🔹 Otherwise show the normal full layout
   return (
     <>
       <div className="movie-header">
-  <button
-    className={`now-showing-btn ${currentMovieType === "nowShowing" ? "active" : ""}`}
-    onClick={() => {
-      fetchData();
-      setCurrentMovieType("nowShowing");
-    }}
-  >
-    Now Showing
-  </button>
+        <button
+          className={`now-showing-btn ${currentMovieType === "nowShowing" ? "active" : ""}`}
+          onClick={loadNowShowing}
+        >
+          Now Showing
+        </button>
 
-  <button
-    className={`coming-soon-btn ${currentMovieType === "upcoming" ? "active" : ""}`}
-    onClick={fetchUpcommingMovies}
-  >
-    Upcoming Movies
-  </button>
-</div>
+        <button
+          className={`coming-soon-btn ${currentMovieType === "upcoming" ? "active" : ""}`}
+          onClick={loadUpcoming}
+        >
+          Upcoming Movies
+        </button>
+      </div>
 
       <SearchBarComponent
         searchText={searchText}
@@ -90,22 +79,24 @@ const BodyComponent = () => {
         }}
       />
 
-      {filteredMovieList.length > 0 ? (
-        <MovieGridComponent movies={filteredMovieList} movieType={currentMovieType} />
-      ) : searchText.trim() ? (
-        <div
-          style={{
-            textAlign: "center",
-            color: "#e91748",
-            fontWeight: "600",
-            marginTop: "40px",
-            fontSize: "18px",
-          }}
-        >
+      <FiltersComponent />
+
+      {loading ? (
+        <div className="shimmer-grid">
+          {[...Array(7)].map((_, i) => (
+            <ShimmerCardComponent key={i} />
+          ))}
+        </div>
+      ) : filteredMovieList.length > 0 ? (
+        <MovieGridComponent
+          movies={filteredMovieList}
+          movieType={currentMovieType}
+          onSelectMovie={(movie) => setSelectedMovie(movie)} // 👈 pass function
+        />
+      ) : (
+        <div style={{ textAlign: "center", color: "#e91748", marginTop: "40px" }}>
           No movies found for "{searchText}"
         </div>
-      ) : (
-        <MovieGridComponent movies={ListOfMovies}  movieType={currentMovieType}  />
       )}
     </>
   );
