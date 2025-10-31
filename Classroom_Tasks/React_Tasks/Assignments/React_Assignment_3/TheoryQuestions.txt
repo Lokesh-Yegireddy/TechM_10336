@@ -1,0 +1,152 @@
+React Concepts – JSX and Components
+
+1. JSX
+
+JSX stands for JavaScript XML. It is a syntax extension for JavaScript used in React to describe what the UI should look like. JSX allows you to write HTML-like code directly inside JavaScript. This makes the code more readable and expressive.
+
+Browsers cannot understand JSX directly, so it must be converted into regular JavaScript before execution. This conversion is done using tools like Babel. JSX makes it easier for developers to visualize and build components since it closely resembles HTML structure.
+
+
+2. React.createElement vs JSX
+
+In React, every UI element is internally represented by React.createElement(). JSX is just a more convenient syntax for writing the same thing.
+
+Using React.createElement(), we can manually create an element like this:
+
+React.createElement("h1", { className: "title" }, "Hello World");
+
+The same thing can be written using JSX as:
+
+<h1 className="title">Hello World</h1>
+
+Both approaches produce the same React element. JSX is easier to write and read, whereas React.createElement() is verbose. JSX is converted into React.createElement() internally by Babel before execution.
+
+
+3. Benefits of JSX
+
+JSX provides several advantages:
+
+1. It improves readability by allowing developers to write UI elements in a familiar HTML-like syntax.
+2. It allows embedding JavaScript expressions inside {} brackets, making it easy to include dynamic values.
+3. It reduces boilerplate code and simplifies component structure.
+4. It integrates smoothly with development tools like Babel, Parcel, and ESLint.
+5. It encourages reusability and modularity by allowing developers to easily compose multiple components together.
+
+
+4. Behind the Scenes of JSX
+
+JSX is not understood directly by the browser. It is first transpiled by Babel into React.createElement() calls. These calls return JavaScript objects representing the Virtual DOM.
+
+React then compares the Virtual DOM with the real DOM and updates only the parts that have changed. This process improves performance and makes UI updates efficient.
+
+In short, the process can be summarized as:
+JSX → Babel → React.createElement → Virtual DOM → Real DOM.
+
+
+5. Babel and Parcel in JSX
+
+Babel is a JavaScript compiler that converts modern JavaScript and JSX code into a form that browsers can understand. When we write JSX like:
+
+<h1>Hello</h1>
+
+Babel converts it into:
+
+React.createElement("h1", null, "Hello");
+
+Parcel is a bundler that helps manage and bundle the files of a React project. It automatically detects JSX and uses Babel internally to compile it. Parcel handles bundling, optimization, and hot reloading, allowing React developers to build applications quickly with minimal setup.
+
+Together, Babel and Parcel make sure that JSX-based React applications run correctly in all browsers without manual configuration.
+
+
+6. Components
+
+A Component in React is a reusable and independent piece of the user interface. Each component contains its own logic and structure. Components help organize large applications into smaller, manageable parts.
+
+There are two main types of components in React:
+
+1. Functional Components – These are simple JavaScript functions that return JSX.
+2. Class Components – These use ES6 classes and include additional features like lifecycle methods.
+
+Modern React primarily uses functional components because they are simpler, faster, and easier to maintain.
+
+
+7. Functional Components
+
+A functional component is a JavaScript function that returns JSX. It can accept input in the form of props and display UI based on them.
+
+Example:
+
+function Greeting() {
+  return <h2>Hello React!</h2>;
+}
+
+Or using arrow function syntax:
+
+const Greeting = () => <h2>Hello React!</h2>;
+
+Functional components were originally stateless, but with the introduction of React Hooks, they can now manage state and handle side effects just like class components. Functional components are now the preferred way of writing components in modern React.
+
+
+8. Composing Components
+
+Composing components means combining multiple smaller components together to build a larger and more complex UI. It promotes reusability and makes the code more organized.
+
+Example:
+
+const Header = () => <h1>Header Section</h1>;
+const Footer = () => <p>Footer Section</p>;
+
+const Page = () => (
+  <div>
+    <Header />
+    <p>Main content goes here...</p>
+    <Footer />
+  </div>
+);
+
+In this example, the Page component is made by composing the Header and Footer components. Each part is reusable and can be maintained independently.
+
+
+9. Role of Type Attribute in Script Tag
+
+The type attribute in a script tag tells the browser how to interpret the JavaScript code inside it.
+
+When we write type="module", it means that the script uses ES modules and supports features like import and export.
+
+When we write type="text/babel", it tells the browser that the code contains JSX or modern JavaScript that must be transpiled by Babel before execution.
+
+Example:
+
+<script type="module" src="App.js"></script>
+
+<script type="text/babel">
+  const element = <h1>Hello JSX!</h1>;
+</script>
+
+Here, the first script loads an external ES module, and the second script block contains JSX code that needs Babel to compile it.
+
+
+10. {TitleComponent} vs {<TitleComponent/>} vs {<TitleComponent></TitleComponent>}
+
+In React JSX, there is an important difference between these three syntaxes.
+
+{TitleComponent} refers to the component function itself, not its rendered output. It is used when we want to pass a reference of the component to another function or variable.
+
+{<TitleComponent/>} calls and renders the component, showing whatever JSX the component returns. It is the most common way to use a component.
+
+{<TitleComponent></TitleComponent>} also renders the component but allows us to include child elements inside it. It is used when a component needs to display content passed between its opening and closing tags.
+
+Example:
+
+const TitleComponent = () => <h3>This is a Title</h3>;
+
+// Reference only
+{TitleComponent}
+
+// Render component
+<TitleComponent />
+
+// Render with children
+<TitleComponent>Child content</TitleComponent>
+
+Understanding this difference is essential because using {TitleComponent} instead of <TitleComponent/> will not render anything in the browser.
